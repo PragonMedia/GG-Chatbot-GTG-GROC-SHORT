@@ -293,7 +293,8 @@ let is_71plus = false;
 
 loadImages();
 
-setTimeout(function () {
+// Initial chat sequence: msg1 -> msg2 -> msg3 -> msg4 -> age buttons
+function runInitialSequence() {
   $("#initTyping").remove();
   $("#msg1").removeClass("hidden").after(typingEffect());
   setTimeout(function () {
@@ -306,17 +307,17 @@ setTimeout(function () {
       scrollToBottom();
       setTimeout(function () {
         $(".temp-typing").remove();
-        $("#msg4").removeClass("hidden").after(typingEffect());
+        $("#msg4").removeClass("hidden");
         scrollToBottom();
         setTimeout(function () {
-          $(".temp-typing").remove();
           $("#msg_age_buttons").removeClass("hidden");
           scrollToBottom();
         }, speed);
       }, speed);
     }, speed);
   }, speed);
-}, speed);
+}
+setTimeout(runInitialSequence, speed);
 
 var buttonValue;
 var currentStep;
